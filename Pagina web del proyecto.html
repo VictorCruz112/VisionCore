@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina web del proyecto</title>
+    <link rel="stylesheet" href="No enviar.css">
+</head>
+<body>
+    <header class="encabezado">
+        <div class="barra-superior">
+            <div class="contenedor">
+                <div class="contacto-info">
+                    <a href="mailto:visioncore2025@gmail.com" class="enlace-contacto">
+                        <span>VisionCore2025@gmail.com</span>
+                    </a>
+                    <a href="telefono" class="enlace-contacto">
+                        <span>6884-0020</span>
+                    </a>
+                </div>
+                <div class="redes sociales">
+                    <a href="#"><i data-feater="facebook"></i></a>
+                    <a href="#"><i data-feater="Instagram"></i></a>
+                    <a href="#"><i data-feater="Twiter"></i></a>
+                </div>
+            </div>
+        </div>
+        <nav class="contenedor-navegacion">
+            <a href="#" data-target="home" class="Logo">
+   
+                <span class="logo">Vision Core</span>
+            </a>
+            <div class="escritorio-menu">
+                <a href="#" data-target="home">HOME</a>
+                <a href="#" data-target="Pag1">ROBOTICA</a>
+                <a href="#"  data-target="Pag2" >PROYECTO</a>
+                <a href="#"  data-target="Pag3" >Que nos inspiro</a>
+                <a href="#"  data-target="Pag4"  >CONOCE MAS</a>
+                <a href="#"  data-target="Contactos"  >CONTACTANOS</a>
+            </div>
+            <div class="Version-movil">
+                <button id="menu-boton" aria-label="abrir menu">
+                    <i>menu</i>
+                </button>
+            </div>
+        </nav>
+        <!--Meno de movil-->
+        <div id="menu-movil" class="menu-oculto">
+            <a href="#" data-target="home">HOME</a>
+            <a href="#" data-target="Pag1">ROBOTICA</a>
+            <a href="#"  data-target="Pag2">PROYECTO</a>
+            <a href="#" data-target="Pag3">INSPIRACION</a>
+            <a href="#" data-target="Pag4">CONOCE MAS</a>
+            <a href="#" data-target="Contactos">CONTACTANOS</a>
+        </div>
+    </header>
+   <main class="contenedor">
+
+    <!--HOME-->
+    <section id="home" class="Seccion seccion-contenido">
+        <article>
+            <h1>BIENVENIDOS</h1>
+            <p>A nuestro proyecto de robotica, en donde nosotros como grupo decidimos realizar la construccion y programacion de un robot de costruccion.Pensado para ayudar al ser humano  en los trabajos mas pesados de una construccion.</p>
+</article>
+        <div>
+            <!--Imagen de home-->
+            <img src="https://placehold.co/600x400/212529/FFF?text=Logo+Vision+Core" alt="Logo de robotica" Img1="Img1">
+        </div>
+    </section>
+
+    <!--Robotica-->
+    <section id="Pag1" class="Paginas seccion-contenido oculto">
+        <h2>¿Que es la robotica?</h2>
+        <p>La robótica es una disciplina que se ocupa del diseño, operación, manufacturación, estudio y aplicación de autómatas o robots. Para ello, combina la ingeniería mecánica, ingeniería eléctrica, ingeniería electrónica, ingeniería biomédica y las ciencias de la computación, así como otras disciplinas.
+            La robótica representa la cumbre en la trayectoria de desarrollo tecnológico, es decir, del diseño de herramientas. Su cometido es construir una herramienta que pueda desempeñar muchas de las labores que actualmente desempeña el ser humano, de manera más eficiente y rápida, o en condiciones y ambientes que al ser humano le serían inaccesibles.</p>
+        <img src="https://placehold.co/600x400/212529/FFF?text=Logo+Vision+Core" alt="Proyecto" class="Img1">
+    </section>
+
+    <!--Proyecto-->
+    <section id="Pag2" class="Paginas seccion-contenido oculto">
+        <h2>ROBOT GARRA</h2>
+        <p>A lo largo de este proyecto hemos podido tener como grupo la experiencia de trabajar en algo que no solo esta pensado para una tarea de un dia, si no que tambien puede ser utilizado en un area de la vida real algun dia.
+            La idea surgio cuado tuvimos una reunion de equipo y nos hicimos las siguientes preguntas: ¿Que areas se beneficiarian mas de un robot?, ¿Como pudieramos integrar un robot?. Despues de una serie de lluvia de ideas decidimos que el area que mas se beneficia es la de construccion,
+            ya que solo en 2025 la muerte de trabajadores de la construccion crecio un 26% respecto al año pasado, eston segun el periodioco nacional llamdo "EL PAIS".
+        </p>
+        <img src="https://placehold.co/600x400/212529/FFF?text=Logo+Vision+Core"  alt="Proyecto" class="Img1">
+    </section>
+
+    <!--Inspiracion-->
+    <section id="Pag3" class="Paginas seccion-contenido oculto">
+        <h2>¿COMO LO HICIMOS</h2>
+        <p>Informacion de inspiracion</p>
+        <img src="https://placehold.co/600x400/212529/FFF?text=Logo+Vision+Core"  alt="Proyecto" class="Img1">
+    </section>
+
+    <!--Conoce mas-->
+    <section id="Pag4" class="Paginas seccion-contenido oculto">
+        <h2>Conoce mas</h2>
+        <p>Informacion de conoce mas</p>
+        <img src="https://placehold.co/600x400/212529/FFF?text=Logo+Vision+Core" alt="Proyecto" class="Img1">
+    </section>    
+
+    <!--Contacto-->
+    <section id="Contactos" class="Seccion-contacto seccion-contenido oculto">
+        <div class="seccion-centrada">
+            <h2>CONTACTANOS</h2>
+            <p>Envianos un mensaje o tu opinion de nuestra pagina web.</p>
+        </div>
+        <form id="contact-form" class="formulario" action="https://formspree.io/f/mrbylnov" method="post">
+            <div class="form-grupo-doble">
+                <div>
+                    <label for="name">Nombre</label>
+                    <input type="text" placeholder="Ingrese su nombre" id="nombre" name="nombre" required>
+                </div>
+                <div>
+                    <label for="email">Correo electronico</label>
+                    <input type="email" placeholder="Ingrese su correo" id="Correo" name="email" required>
+                </div>
+            </div>
+            <div class="form-grupo">
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" rows="4" name="mensaje" required></textarea>
+            </div>
+            <div class="form-accion">
+                <button type="submit" class="boton-grande">Enviar mensaje</button>
+            </div>
+        </form>
+    </section>
+   </main> 
+   <footer class="Pie-pagina">
+    &copy;2025 Vision Core.Todos los derechos reservados.
+   </footer>
+   
+   
+</body>
+</html>
