@@ -130,6 +130,52 @@
    <footer class="Pie-pagina">
     &copy;2025 Vision Core.Todos los derechos reservados.
    </footer>
+      <script>
+
+    // Esperar a que el documento HTML se cargue completamente
+    document.addEventListener('DOMContentLoaded', () => {
+
+        //Seleccionar TODOS los elementos que vamos a necesitar
+        const todosLosEnlaces = document.querySelectorAll('.escritorio-menu a, .menu-oculto a, .Logo');
+        const todasLasSecciones = document.querySelectorAll('.seccion-contenido');
+        const botonMenuMovil = document.getElementById('menu-boton');
+        const menuMovil = document.getElementById('menu-movil');
+
+        //FUNCIONALIDAD PARA EL BOTÓN DEL MENÚ MÓVIL 
+        botonMenuMovil.addEventListener('click', () => {
+            // Alterna la clase 'menu-visible' para mostrar u ocultar el menú
+            menuMovil.classList.toggle('menu-visible');
+        });
+
+        //FUNCIONALIDAD PARA TODOS LOS ENLACES DE NAVEGACIÓN 
+        todosLosEnlaces.forEach(enlace => {
+            enlace.addEventListener('click', (event) => {
+                //Prevenir la acción por defecto (no recargar la página)
+                event.preventDefault();
+
+                // OBTENER EL ID DE LA SECCIÓN A MOSTRAR
+                const targetId = enlace.getAttribute('data-target');
+                const seccionObjetivo = document.getElementById(targetId);
+
+                // Si no existe la sección, no hacer nada
+                if (!seccionObjetivo) return;
+
+                //  OCULTAR TODAS LAS SECCIONES SIN EXCEPCIÓN
+                todasLasSecciones.forEach(seccion => {
+                    seccion.classList.add('oculto');
+                });
+
+                //  MOSTRAR SOLAMENTE LA SECCIÓN ELEGIDA
+                seccionObjetivo.classList.remove('oculto');
+
+                //  CERRAR EL MENÚ MÓVIL SI ESTÁ ABIERTO
+                if (menuMovil.classList.contains('menu-visible')) {
+                    menuMovil.classList.remove('menu-visible');
+                }
+            });
+        });
+    });
+    </script>
 
    
    
