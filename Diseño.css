@@ -98,6 +98,8 @@ h2 { font-size: 2rem; }
     font-weight: bold;
     color: var(--color-oscuro);
     cursor: pointer;
+    align-items: center;
+    display: flex;
 }
 
 .escritorio-menu a {
@@ -445,4 +447,10 @@ outline: none;
 
 .carrusel-dot.dot-activo {
     background-color: var(--color-primario);
+}
+#img-por{
+    width: 60px;
+    height: 60px;
+    align-items: center;
+    border-radius: 50%;
 }
