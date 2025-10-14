@@ -1,7 +1,7 @@
 :root {
     --color-primario: #0d6efd; /* Azul principal */
     --color-oscuro: #212529;   /* Negro para fondos */
-    --color-texto: #333;       /* Color de texto principal */
+    --color-texto: #333;      /* Color de texto principal */
     --color-fondo: #f8f9fa;   /* Gris claro para el fondo */
     --color-blanco: #ffffff;
     --sombra-suave: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -13,9 +13,27 @@
     padding: 0;
 }
 
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+}
+
 html {
     scroll-behavior: smooth;
+    /* --- INICIO DEL CAMBIO: Ocultar barra en Firefox --- */
+    scrollbar-width: none; /* Para Firefox */
 }
+
+/* --- INICIO DEL CAMBIO: Ocultar barra en Chrome, Safari, Edge --- */
+/* Esta regla oculta la barra de desplazamiento */
+::-webkit-scrollbar {
+    display: none;
+}
+/* --- FIN DEL CAMBIO --- */
+
 
 body {
     font-family: Arial, sans-serif;
@@ -94,13 +112,20 @@ h2 { font-size: 2rem; }
 }
 
 .Logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
     font-size: 1.8rem;
     font-weight: bold;
     color: var(--color-oscuro);
     cursor: pointer;
-    align-items: center;
-    
+}
 
+#Img-port{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .escritorio-menu a {
@@ -129,11 +154,21 @@ h2 { font-size: 2rem; }
     font-size: 24px;
 }
 
+#menu-boton:focus {
+    box-shadow: none;
+}
+
+
 #menu-movil {
     display: none;
     flex-direction: column;
     background-color: var(--color-blanco);
     border-top: 1px solid #eee;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1100;
 }
 
 #menu-movil.menu-visible {
@@ -150,55 +185,188 @@ h2 { font-size: 2rem; }
     background-color: var(--color-fondo);
 }
 
-/* --- SECCIONES DE CONTENIDO --- */
-.seccion-contenido {
-    padding: 4rem 20px;
-    border-bottom: 2px solid #e9ecef;
-    text-align: left;
+/* --- ESTILOS PARA LA PÁGINA HOME --- */
+#home .bienvenida-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
 }
 
-.seccion-contenido.oculto {
-    display: none !important; /* !important asegura que esta regla siempre gane */
-    
+#home .previews-container {
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-/* Diseño de dos columnas para todas las páginas con imagen */
- #Pag1, #Pag2, #Pag3, #Pag4 {
+#home .preview-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 3rem;
+    margin-bottom: 4rem;
 }
 
-
-/* El primer elemento (h2) y el segundo (p) van en la primera columna. */
-#Pag1 > h2, #Pag2 > h2, #Pag3 > h2, #Pag4 > h2 {
-    grid-column: 1 / 2;
-    align-self: start; /* Controla la posicion del subtitulo en la secciones */
-    margin-bottom: 0; /* Quitamos el margen para juntarlo más */
+#home .preview-section.reverse {
+    direction: rtl; 
+}
+#home .preview-section.reverse > * {
+    direction: ltr; 
 }
 
-#Pag1 > p, #Pag2 > p, #Pag3 > p, #Pag4 > p {
-    grid-column: 1 / 2;
-    align-self: start; /* Lo subimos para que esté cerca del título */
-
+#home .preview-image {
+    overflow: hidden;
+    border-radius: 10px;
 }
 
-/* El tercer elemento (img) va en la segunda columna y ocupa todo el alto */
-#Pag1 > img, #Pag2 > img, #Pag3 > img, #Pag4 > img {
-    grid-column: 2 / 3;
-    grid-row: 1 / 4; /* Hacemos que la imagen ocupe el espacio de 2 filas */
+#home .preview-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: var(--sombra-suave);
+    transition: transform 0.4s ease;
 }
 
+#home .preview-image img:hover {
+    transform: scale(1.05);
+}
+
+#home .preview-text h2 {
+    font-size: 2.2rem;
+}
+
+#home .button-enlace-preview {
+    display: inline-block;
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#home .button-enlace-preview:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-3px);
+}
+
+/* --- SECCIONES DE CONTENIDO --- */
+.seccion-contenido {
+    padding: 4rem 20px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.seccion-contenido.oculto {
+    display: none !important;
+}
+
+#Pag1, #Pag2, #Pag3 {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    align-items: center;
+    gap: 3rem;
+}
+
+#Pag4 {
+    display: block;
+}
 
 .Img1 {
     width: 100%;
     height: auto;
     border-radius: 10px;
     box-shadow: var(--sombra-suave);
+    transition: transform 0.4s ease;
 }
 
-/* --- FORMULARIO --- */
+.Img1:hover {
+    transform: scale(1.05);
+}
+
+/* --- CARRUSEL --- */
+.carrusel-contenedor {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: var(--sombra-suave);
+    height: 500px;
+}
+
+.carrusel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carrusel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.carrusel-slide img,
+.carrusel-slide video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.carrusel-boton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--color-blanco);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 10;
+    transition: background-color 0.3s;
+}
+
+.carrusel-boton:hover {
+    background-color: var(--color-primario);
+}
+
+.carrusel-boton:focus {
+    box-shadow: none;
+    background-color: rgba(0,0,0,0.7);
+}
+
+
+.carrusel-boton.prev { left: 10px; }
+.carrusel-boton.next { right: 10px; }
+
+.carrusel-nav {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.carrusel-dot {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.3s;
+}
+
+.carrusel-dot.dot-activo {
+    background-color: var(--color-primario);
+}
+
+/* --- FORMULARIO Y CONTACTO --- */
 #Contactos {
     display: block;
 }
@@ -257,6 +425,25 @@ h2 { font-size: 2rem; }
     background-color: #0b5ed7;
 }
 
+/* --- ÍCONOS DE REDES SOCIALES --- */
+.redes-sociales a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--color-oscuro);
+    color: var(--color-blanco);
+    margin: 0 0.5rem;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.redes-sociales a:hover {
+    background-color: var(--color-primario);
+    transform: translateY(-2px);
+}
+
 /* --- PIE DE PÁGINA --- */
 .Pie-pagina {
     background-color: var(--color-oscuro);
@@ -268,6 +455,7 @@ h2 { font-size: 2rem; }
 /* --- DISEÑO RESPONSIVO (PARA MÓVILES) --- */
 @media (max-width: 768px) {
     h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
 
     .escritorio-menu {
         display: none;
@@ -276,183 +464,41 @@ h2 { font-size: 2rem; }
     .Version-movil {
         display: block;
     }
+    
+    .seccion-contenido {
+        padding: 3rem 15px;
+    }
 
-    #home, #Pag1, #Pag2, #Pag3, #Pag4, .form-grupo-doble {
+    #home .preview-section,
+    #Pag1,
+    #Pag2,
+    #Pag3 {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 2rem;
+    }
+
+    #home .preview-section.reverse {
+        direction: ltr;
+    }
+
+    #home .preview-image, #home .preview-text {
+        text-align: center;
+    }
+
+    .carrusel-contenedor {
+        height: 350px;
+        width: 100%;
+    }
+    
+    .form-grupo-doble {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .redes-sociales {
+        margin-top: 1rem;
+        justify-content: center;
     }
 }
-.Video-robot{
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    display: block;
-     border: 2px solid #39FF14; background: transparent; color: #39FF14; box-shadow: 0 0 5px #39FF14;
-}
 
-.button-enlace{
-    display: inline-block;
-    background-color: #0056b3;
-    color: white;
-    padding: 10px 25px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    text-align: center;
-    transition: backgroun-color 0.2s ease;
-    border: none;
-    transition: all 0.3s ease;
-    cursor: pointer;
-
-}
-.button-enlace:hover,
-.button-enlace:focus{
-outline: none;
-background: #0eaab8;
-color: #111;
-box-shadow: 0 0 20px #0eaab8, 0 0 40px #0eaab8;
-outline: none;
-}
-#home{
-    .bienvenida-header {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 4rem auto;
-}
-
-.previews-container {
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.preview-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 3rem;
-    margin-bottom: 4rem;
-}
-
-.preview-section.reverse {
-    direction: rtl; 
-}
-.preview-section.reverse > * {
-    direction: ltr; 
-}
-
-.preview-image img {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: var(--sombra-suave);
-}
-
-.preview-text h2 {
-    font-size: 2.2rem;
-}
-
-.button-enlace-preview {
-    display: inline-block;
-    background-color: var(--color-primario);
-    color: var(--color-blanco);
-    padding: 10px 25px;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.button-enlace-preview:hover {
-    background-color: #0b5ed7;
-    transform: translateY(-3px);
-}
-}.carrusel-contenedor {
-    position: relative;
-    width: 115%;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: var(--sombra-suave);
-    grid-column: 2 / 4;
-    grid-row: 1 / 4;
-    height: 500px; /* <-- 1. ALTURA FIJA (puedes ajustarla) */
-}
-
-.carrusel-track {
-    display: flex;
-    height: 100%;
-    transition: transform 0.5s ease-in-out;
-}
-
-.carrusel-slide {
-    min-width: 100%;
-    box-sizing: border-box;
-    height: 100%;
-}
-
-/* 2. REGLA MODIFICADA */
-.carrusel-slide img,
-.carrusel-slide video {
-    width: 100%;
-    height: 100%; /* <-- Hacemos que ocupen todo el alto del 'slide' */
-    display: block;
-    object-fit: cover; /* <-- ESTA ES LA PROPIEDAD MÁGICA */
-}
-
-/* Estilos para los botones de flechas */
-.carrusel-boton {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: var(--color-blanco);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    z-index: 10;
-}
-
-.carrusel-boton:hover {
-    background-color: var(--color-primario);
-}
-
-.carrusel-boton.prev {
-    left: 10px;
-}
-
-.carrusel-boton.next {
-    right: 10px;
-}
-
-/* Estilos para los puntos de navegación */
-.carrusel-nav {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-}
-
-.carrusel-dot {
-    border: none;
-    background-color: rgba(255, 255, 255, 0.6);
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    cursor: pointer;
-    padding: 0;
-}
-
-.carrusel-dot.dot-activo {
-    background-color: var(--color-primario);
-}
-#Img-port{
-    width: 30%;
-    height: 20%;
-    align-items: center;
-    border-radius: 50%;
-    display: flex;
-}
