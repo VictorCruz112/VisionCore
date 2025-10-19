@@ -1,28 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- LÓGICA DE LA PANTALLA DE BIENVENIDA ---
+    
+    // --- LÓGICA DE LA PANTALLA DE BIENVENIDA MODIFICADA ---
     const splashScreen = document.getElementById('Pantalla-rapida');
     const welcomeSound = document.getElementById('Sonido-bienvenida');
-    const logoBienvenida = document.getElementById('logo-bienvenida');
+    const logoYTexto = document.getElementById('Logo-y-texto'); // Contenedor clickeable
+    const puertaIzquierda = document.getElementById('Izquierda');
+    const puertaDerecha = document.getElementById('Derecha');
 
-    // Nos aseguramos de que los tres elementos existan antes de añadir el listener
-    if (splashScreen && welcomeSound && logoBienvenida) {
+    // Función para reanudar las animaciones
+    const reanudarAnimaciones = () => {
+        if (logoYTexto) logoYTexto.style.animationPlayState = 'running';
+        if (puertaIzquierda) puertaIzquierda.style.animationPlayState = 'running';
+        if (puertaDerecha) puertaDerecha.style.animationPlayState = 'running';
+    };
+
+    if (splashScreen && logoYTexto && puertaIzquierda && puertaDerecha) {
         
-        // El logo funciona como botón para iniciar el audio y la transición
-        logoBienvenida.addEventListener('click', () => {
-
-            // Iniciar el audio (la interacción del usuario lo permite)
-            welcomeSound.play().catch(error => {
-                console.warn("La reproducción de audio fue bloqueada, pero el usuario intentó interactuar.", error);
-            });
+        // La interacción del usuario dispara todo
+        logoYTexto.addEventListener('click', (event) => {
+            event.preventDefault();
             
-            // Iniciar la animación de cierre después del delay (3.7 segundos)
+            // 1. Intentar reproducir el audio (el clic lo permite)
+            if (welcomeSound) {
+                welcomeSound.play().catch(error => {
+                    console.warn("La reproducción de audio fue bloqueada o falló:", error);
+                });
+            }
+            
+            // 2. Reanudar las animaciones CSS pausadas
+            reanudarAnimaciones();
+
+            // 3. Ocultar el splash screen después del tiempo total de la animación (1.7s + 2s de delay = 3.7s)
             setTimeout(() => {
                 splashScreen.classList.add('splash-hidden');
-            }, 3700); 
+            }, 3800); // 3.8 segundos para un margen de seguridad
 
-            // Deshabilitar clics futuros en el logo
-            logoBienvenida.style.pointerEvents = 'none';
-        });
+            // 4. Deshabilitar clics futuros
+            logoYTexto.style.pointerEvents = 'none';
+        }, { once: true }); // El evento solo se ejecuta una vez
     }
     // --- FIN DE LA LÓGICA DE BIENVENIDA ---
 
@@ -65,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Cierra el menú móvil si está abierto
-            if (menuMovil.classList.contains('menu-visible')) {
+            if (menuMovil && menuMovil.classList.contains('menu-visible')) {
                 menuMovil.classList.remove('menu-visible');
             }
             
@@ -77,18 +92,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- LÓGICA DEL CARRUSEL (para la sección Pag2) ---
     function setupCarousel() {
         const carruselTrack = document.querySelector('#Pag2 .carrusel-track');
-        if (!carruselTrack) return; 
+        // Prevenir errores si el carrusel ya se configuró o no existe
+        if (!carruselTrack || carruselTrack.dataset.initialized) return; 
 
         const slides = Array.from(carruselTrack.children);
         const nextButton = document.querySelector('#Pag2 .carrusel-boton.next');
         const prevButton = document.querySelector('#Pag2 .carrusel-boton.prev');
         const dotsNav = document.querySelector('#Pag2 .carrusel-nav');
-        if (!dotsNav) return; 
+        if (!dotsNav || slides.length === 0) return; 
         const dots = Array.from(dotsNav.children);
 
-        // Calcula el ancho de un slide
-        const slideWidth = slides.length > 0 ? slides[0].getBoundingClientRect().width : 0;
-        if (slideWidth === 0) return; 
+        // Forzar recalculo del ancho del slide (crucial para responsividad)
+        let slideWidth = slides[0].offsetWidth; 
 
         // Coloca los slides uno al lado del otro
         slides.forEach((slide, index) => {
@@ -114,18 +129,17 @@ document.addEventListener('DOMContentLoaded', () => {
             dotObjetivo.classList.add('dot-activo');
         };
         
-        // Patrón para prevenir múltiples listeners en los botones al re-inicializar
+        // Navegación con botón Siguiente (Usando clones para evitar listeners duplicados al re-inicializar)
         const newNextButton = nextButton.cloneNode(true);
         nextButton.parentNode.replaceChild(newNextButton, nextButton);
         const newPrevButton = prevButton.cloneNode(true);
         prevButton.parentNode.replaceChild(newPrevButton, prevButton);
 
-        // Navegación con botón Siguiente
         newNextButton.addEventListener('click', () => {
             const slideActual = carruselTrack.querySelector('.slide-activo');
             const dotActual = dotsNav.querySelector('.dot-activo');
             let siguienteSlide = slideActual.nextElementSibling;
-            if (!siguienteSlide) siguienteSlide = slides[0]; // Bucle al inicio
+            if (!siguienteSlide) siguienteSlide = slides[0]; 
             
             const indiceSiguiente = slides.findIndex(slide => slide === siguienteSlide);
             moverASlide(carruselTrack, slideActual, siguienteSlide);
@@ -137,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const slideActual = carruselTrack.querySelector('.slide-activo');
             const dotActual = dotsNav.querySelector('.dot-activo');
             let anteriorSlide = slideActual.previousElementSibling;
-            if (!anteriorSlide) anteriorSlide = slides[slides.length - 1]; // Bucle al final
+            if (!anteriorSlide) anteriorSlide = slides[slides.length - 1]; 
             
             const indiceAnterior = slides.findIndex(slide => slide === anteriorSlide);
             moverASlide(carruselTrack, slideActual, anteriorSlide);
@@ -156,6 +170,22 @@ document.addEventListener('DOMContentLoaded', () => {
             
             moverASlide(carruselTrack, slideActual, slideObjetivo);
             actualizarDots(dotActual, dotObjetivo);
+        });
+        
+        // Marca el carrusel como inicializado
+        carruselTrack.dataset.initialized = 'true';
+
+        // Manejar el cambio de tamaño de la ventana (responsividad del carrusel)
+        window.addEventListener('resize', () => {
+            slideWidth = slides[0].offsetWidth; // Recalcular el ancho
+            slides.forEach((slide, index) => {
+                slide.style.left = slideWidth * index + 'px';
+            });
+            // Mover al slide activo actual (reajusta la posición del track)
+            const slideActual = carruselTrack.querySelector('.slide-activo');
+            if (slideActual) {
+                 carruselTrack.style.transform = 'translateX(-' + slideActual.style.left + ')';
+            }
         });
     }
 });
