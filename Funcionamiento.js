@@ -1,13 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- LÓGICA DE LA PANTALLA DE BIENVENIDA MODIFICADA ---
+    // --- LÓGICA DE LA PANTALLA DE BIENVENIDA (SIN CAMBIOS) ---
     const splashScreen = document.getElementById('Pantalla-rapida');
     const welcomeSound = document.getElementById('Sonido-bienvenida');
     const logoYTexto = document.getElementById('Logo-y-texto'); // Contenedor clickeable
     const puertaIzquierda = document.getElementById('Izquierda');
     const puertaDerecha = document.getElementById('Derecha');
 
-    // Función para reanudar las animaciones
     const reanudarAnimaciones = () => {
         if (logoYTexto) logoYTexto.style.animationPlayState = 'running';
         if (puertaIzquierda) puertaIzquierda.style.animationPlayState = 'running';
@@ -15,34 +14,94 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (splashScreen && logoYTexto && puertaIzquierda && puertaDerecha) {
-        
-        // La interacción del usuario dispara todo
         logoYTexto.addEventListener('click', (event) => {
             event.preventDefault();
             
-            // 1. Intentar reproducir el audio (el clic lo permite)
             if (welcomeSound) {
                 welcomeSound.play().catch(error => {
                     console.warn("La reproducción de audio fue bloqueada o falló:", error);
                 });
             }
             
-            // 2. Reanudar las animaciones CSS pausadas
             reanudarAnimaciones();
 
-            // 3. Ocultar el splash screen después del tiempo total de la animación (1.7s + 2s de delay = 3.7s)
             setTimeout(() => {
                 splashScreen.classList.add('splash-hidden');
-            }, 3800); // 3.8 segundos para un margen de seguridad
+            }, 3800); 
 
-            // 4. Deshabilitar clics futuros
             logoYTexto.style.pointerEvents = 'none';
-        }, { once: true }); // El evento solo se ejecuta una vez
+        }, { once: true });
     }
-    // --- FIN DE LA LÓGICA DE BIENVENIDA ---
+    // ------------------------------------------------------------------
+
+    // --- LÓGICA DEL FORMULARIO DE CONTACTO (NUEVA IMPLEMENTACIÓN) ---
+    const formulario = document.querySelector('.formulario');
+    
+    if (formulario) {
+        formulario.addEventListener('submit', async function (event) {
+            event.preventDefault(); // Detiene el envío normal del formulario
+
+            const form = event.target;
+            const statusMessage = document.createElement('div');
+            statusMessage.style.cssText = 'padding: 1rem; margin-top: 1.5rem; border-radius: 5px; text-align: center; font-weight: bold;';
+
+            // Muestra un mensaje de carga temporalmente
+            const boton = form.querySelector('.boton-grande');
+            const textoOriginalBoton = boton.textContent;
+            boton.disabled = true;
+            boton.textContent = 'Enviando...';
+            
+            try {
+                // Utiliza la API fetch para enviar los datos de forma asíncrona
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Éxito: Muestra el mensaje de confirmación
+                    statusMessage.textContent = "Tu mensaje ha sido enviado con éxito. ✅";
+                    statusMessage.style.backgroundColor = '#d4edda'; // Verde claro
+                    statusMessage.style.color = '#155724'; // Verde oscuro
+
+                    form.reset(); // Limpia el formulario
+                    
+                } else {
+                    // Fallo en la respuesta del servidor o Formspree
+                    statusMessage.textContent = "Hubo un error al enviar el mensaje. ❌";
+                    statusMessage.style.backgroundColor = '#f8d7da'; // Rojo claro
+                    statusMessage.style.color = '#721c24'; // Rojo oscuro
+                }
+
+            } catch (error) {
+                // Fallo en la conexión de red
+                console.error('Error de red:', error);
+                statusMessage.textContent = "Error de conexión. Intenta de nuevo más tarde. 🌐";
+                statusMessage.style.backgroundColor = '#fff3cd'; // Amarillo claro
+                statusMessage.style.color = '#856404'; // Amarillo oscuro
+            } finally {
+                // Vuelve a habilitar el botón y muestra el estado
+                boton.disabled = false;
+                boton.textContent = textoOriginalBoton;
+
+                // Añade el mensaje de estado justo debajo del formulario
+                form.appendChild(statusMessage);
+
+                // Oculta el mensaje de estado después de 5 segundos
+                setTimeout(() => {
+                    statusMessage.remove();
+                }, 5000);
+            }
+        });
+    }
+
+    // ------------------------------------------------------------------
 
 
-    // --- VARIABLES GENERALES Y LÓGICA DE NAVEGACIÓN ---
+    // --- VARIABLES GENERALES Y LÓGICA DE NAVEGACIÓN (SIN CAMBIOS) ---
     const todosLosEnlaces = document.querySelectorAll('.escritorio-menu a, .Logo, .button-enlace-preview, #menu-movil a');
     const todasLasSecciones = document.querySelectorAll('.seccion-contenido');
     const botonMenuMovil = document.getElementById('menu-boton');
@@ -89,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- LÓGICA DEL CARRUSEL (para la sección Pag2) ---
+    // --- LÓGICA DEL CARRUSEL (SIN CAMBIOS) ---
     function setupCarousel() {
         const carruselTrack = document.querySelector('#Pag2 .carrusel-track');
         // Prevenir errores si el carrusel ya se configuró o no existe
@@ -102,15 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!dotsNav || slides.length === 0) return; 
         const dots = Array.from(dotsNav.children);
 
-        // Forzar recalculo del ancho del slide (crucial para responsividad)
         let slideWidth = slides[0].offsetWidth; 
 
-        // Coloca los slides uno al lado del otro
         slides.forEach((slide, index) => {
             slide.style.left = slideWidth * index + 'px';
         });
         
-        // Reinicializa las clases activas
         slides.forEach(s => s.classList.remove('slide-activo'));
         dots.forEach(d => d.classList.remove('dot-activo'));
         slides[0].classList.add('slide-activo');
@@ -129,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
             dotObjetivo.classList.add('dot-activo');
         };
         
-        // Navegación con botón Siguiente (Usando clones para evitar listeners duplicados al re-inicializar)
         const newNextButton = nextButton.cloneNode(true);
         nextButton.parentNode.replaceChild(newNextButton, nextButton);
         const newPrevButton = prevButton.cloneNode(true);
@@ -146,7 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
             actualizarDots(dotActual, dots[indiceSiguiente]);
         });
 
-        // Navegación con botón Anterior
         newPrevButton.addEventListener('click', () => {
             const slideActual = carruselTrack.querySelector('.slide-activo');
             const dotActual = dotsNav.querySelector('.dot-activo');
@@ -158,7 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
             actualizarDots(dotActual, dots[indiceAnterior]);
         });
 
-        // Navegación con los puntos (dots)
         dotsNav.addEventListener('click', e => {
             const dotObjetivo = e.target.closest('button.carrusel-dot');
             if (!dotObjetivo) return;
@@ -172,16 +225,13 @@ document.addEventListener('DOMContentLoaded', () => {
             actualizarDots(dotActual, dotObjetivo);
         });
         
-        // Marca el carrusel como inicializado
         carruselTrack.dataset.initialized = 'true';
 
-        // Manejar el cambio de tamaño de la ventana (responsividad del carrusel)
         window.addEventListener('resize', () => {
-            slideWidth = slides[0].offsetWidth; // Recalcular el ancho
+            slideWidth = slides[0].offsetWidth; 
             slides.forEach((slide, index) => {
                 slide.style.left = slideWidth * index + 'px';
             });
-            // Mover al slide activo actual (reajusta la posición del track)
             const slideActual = carruselTrack.querySelector('.slide-activo');
             if (slideActual) {
                  carruselTrack.style.transform = 'translateX(-' + slideActual.style.left + ')';
