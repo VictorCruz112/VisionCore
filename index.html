@@ -3,13 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="aiMjd8DOAtt4lA3yWC88bvJ4Dr2G3Ey8-wcvClpxP3o" />
+    <meta name="google-site-verification" content="aiMjd8DOAtt4lA3yWC88bvJ4Dr2G3Ey8-wcvClpxP3o" /> <!--Verificacion de Google, para usar Google search-->
     <title>Gripbot-Vision Core</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <!-- Asegúrate de que el nombre del archivo CSS coincida -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"><!--Iconos como los que aparacen en el carrusel-->
     <link rel="stylesheet" href="Diseño.css">
 </head>
 <body>
+    <!--Animacion de bienvenida-->
+    <div id="Pantalla-rapida">
+        <div class="Puertas" id="Izquierda"></div>
+
+        <div id="Logo-y-texto">  
+        <img src="Vision core.jpg" alt="Logo de vision Core" id="logo-bienvenida">
+        <h2 id="Bienvenida-texto">Vision Core</h2>
+        </div>
+        <div class="Puertas" id="Derecha"></div>
+        <audio id="Sonido-bienvenida" src="Bienvenido a Vision Core.mp3" type="audio/mp3" preload="auto" ></audio>
+    </div>
+
+
+
+
     <header class="encabezado">
         <div class="barra-superior">
             <div class="contenedor">
@@ -47,9 +61,7 @@
     </header>
 
     <main class="contenedor">
-        <!-- HOME -->
         <section id="home" class="seccion-contenido">
-            <!-- (Contenido de Home sin cambios) -->
             <div class="bienvenida-header">
                 <h1>BIENVENIDOS</h1>
                 <p>Somos Vision Core, un equipo de estudiantes explorando el futuro de la construcción con nuestro robot, Gripbot. Desplázate para descubrir nuestro proyecto, la tecnología detrás de él y la inspiración que nos impulsa.</p>
@@ -82,22 +94,22 @@
             </div>
         </section>
 
-        <!-- (Contenido de Pag1 sin cambios) -->
         <section id="Pag1" class="seccion-contenido oculto">
-            <h2>¿QUE ES LA ROBOTICA?</h2>
-            <p>La robótica es la ciencia que estudia a los robots...</p>
+            <div>
+                <h2>¿QUE ES LA ROBOTICA?</h2>
+                <p>La robotica es el campo donde la ingenieria,la informatica y la creatividad se unen para dar vida a maquinas capaces de realizar tareas de forma autonoma.Va mas alla de simples mecanismos;se trata de crear soluciones inteligentes que pueden mover,
+                   manipular y procesar informacion para resolver problemas del mundo real, tal como lo hace nuestro robot, Gripbot.</p>
+            </div>
             <img src="Robotica.avif" alt="Proyecto" class="Img1">
         </section>
 
-        <!-- AQUÍ ESTÁ LA CORRECCIÓN -->
         <section id="Pag2" class="seccion-contenido oculto">
-            <!-- INICIO DEL CAMBIO: Se agrupa el título y el párrafo en un div -->
             <div>
-                <h2>ROBOT GARRA</h2>
-                <p>Gripbot es nuestra solución robótica de agarre de última generación. Diseñado para ofrecer una precisión milimétrica y una fuerza controlada, garantiza la manipulación segura de cualquier objeto. **Usa las flechas para ver la imagen y el video.**</p>
+                <h2>NUESTRO PROYECTO: GRIPBOT</h2>
+                <p>Gripbot es una garra robotica de alta precision,diseñada para mejorar la seguridad y eficiencia en entornos de construccion.Su objetivo es simple pero crucial: manipular y transportar materiales pesados o de dificil acceso, reduciendo el riesgo para los trabajadores y optimizando los tiempos.
+                    Con un diseño robusto y un control intuitivo,Gripbot es nuestra primera respuesta a los desafios del mañana.
+                </p>
             </div>
-            <!-- FIN DEL CAMBIO -->
-
             <div class="carrusel-contenedor">
                 <div class="carrusel-track">
                     <div class="carrusel-slide">
@@ -118,22 +130,28 @@
             </div>
         </section>
         
-        <!-- (Resto del HTML sin cambios) -->
         <section id="Pag3" class="seccion-contenido oculto">
-            <h2>¿COMO LO HICIMOS?</h2>
-            <p>La idea surgio cuando nos hicimos las preguntas...</p>
+            <div>
+                <h2>¿POR QUE GRIPBOT?</h2>
+                <p>La idea surgio al observar los desafios diarios en la construccion:
+                    tareas repetitivas, riesgos fisicos y la necesidad constante de mayor eficiencia.
+                    Nos hicimos una pregunta clave:<b>¿como puede la tecnologia ayudar al ser humano?</b>La respuesta
+                    Gripbot, un proyecto nacido de la curiosidad, el trabajo en equipo y el deseo de aplicar nuestros conocimientos
+                    para generar un impacto posivio y tangible.
+                </p>
+            </div>
             <img src="Segunda foto del armado.jpg" alt="Proyecto" class="Img1">
         </section>
 
         <section id="Pag4" class="seccion-contenido oculto">
             <div class="seccion-centrada" style="margin-bottom: 3rem;">
-                <h2>Conoce a Nuestro Equipo</h2>
+                <h2>CONOCE A NUESTRO EQUIPO</h2>
                 <p style="font-size: 1.1rem; max-width: 600px; margin: 1rem auto 0;">
-                    El espíritu de q    nnnnnequipo comienza con personas inspiradoras. Creemos que un gran trabajo empieza con gente feliz y termina con clientes felices.
+                 El espiritu de un equipo comienza con personas inspiradoras.Somos un grupo de jovenes comprometidos a cambiar y mejorar el futuro de toda una generacion,
+                 comenzando con las ideas que dasarrollamos hoy.Estas son las mentes detras de Vision Core.
                 </p>
             </div>
             <div class="equipo-contenedor" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; text-align: center;">
-                <!-- Miembros del equipo -->
                 <div class="miembro-equipo" style="flex: 1 1 200px; max-width: 220px;">
                     <img src="Victor Cruz.png"alt="Foto del primer miembro" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem; box-shadow: var(--sombra-suave);">
                     <h3 style="font-size: 1.5rem; margin-bottom: 0.25rem;">Victor Cruz</h3>
@@ -144,11 +162,13 @@
                     <img src="Owen Martinez.png" alt="Foto del segundo miembro" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem; box-shadow: var(--sombra-suave);">
                     <h3 style="font-size: 1.5rem; margin-bottom: 0.25rem;">Owen Martinez</h3>
                     <p style="color: #6c757d;">Programador Back-end</p>
+                    <p style="color:#6c757d">Programador del robot</p>
                 </div>
                 <div class="miembro-equipo" style="flex: 1 1 200px; max-width: 220px;">
                     <img src="Carlos Daniel 6.png" alt="Foto del tercer miembro" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem; box-shadow: var(--sombra-suave);">
                     <h3 style="font-size: 1.5rem; margin-bottom: 0.25rem;">Carlos Alvarenga</h3>
                     <p style="color: #6c757d;">Editor de contenido</p>
+                    <p style="color:#6c757d">Diseñador Grafico</p>
                 </div>
             
             </div>
@@ -188,4 +208,3 @@
     <script src="Funcionamiento.js"></script>
 </body>
 </html>
-

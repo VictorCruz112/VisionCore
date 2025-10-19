@@ -501,4 +501,72 @@ h2 { font-size: 2rem; }
         justify-content: center;
     }
 }
+/*Animacion*/
+#Pantalla-rapida{
+    position: fixed;
+    inset: 0; /*Toda la ventana*/
+    z-index: 9990;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-blanco);
+    overflow: hidden;
+}
+#Pantalla-rapida.splash-hidden{
+    display: none;
+}
+/*Estilo del logo*/
+#logo-bienvenida{
+    position: relative;
+    z-index: 9999;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    animation: fadeOutLogo 1.7s 1.9s forwards;
+}
+.Puertas{
+    position: absolute;
+    top: 0%;
+    width: 50%;
+    height: 100%;
+    background: var(--color-oscuro);
+    animation-duration: 1.7s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+#Izquierda{
+    left: 0;
+    animation-name: openLeft;
+}
+#Derecha{
+    right: 0;
+    animation-name: openRight;
+}
+@keyframes fadeOutLogo {
+ to { opacity: 0; transform: scale(0.8); }
+}
+@keyframes openLeft {
+to { transform: translateX(-100%); } /* Mueve la compuerta izquierda fuera de la pantalla */
+}
+@keyframes openRight {
+to { transform: translateX(100%); } /* Mueve la compuerta derecha fuera de la pantalla */
+}
+#Logo-y-texto{
+    position: relative;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeOutLogo 1.7s 1.9s forwards;
+    cursor: pointer;
+}
 
+#Bienvenida-texto{
+    color: var(--color-blanco);
+    font-size: 1.5rem;
+    margin-top: 10px;
+    font-weight:bold;
+
+}
