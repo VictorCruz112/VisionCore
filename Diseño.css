@@ -169,6 +169,7 @@ h2 { font-size: 2rem; }
     left: 0;
     width: 100%;
     z-index: 1100;
+    cursor: pointer;
 }
 
 #menu-movil.menu-visible {
@@ -522,7 +523,7 @@ h2 { font-size: 2rem; }
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    animation: fadeOutLogo 1.7s 1.9s forwards;
+  
     
 }
 .Puertas{
@@ -532,7 +533,7 @@ h2 { font-size: 2rem; }
     height: 100%;
     background: var(--color-oscuro);
     animation-duration: 1.7s;
-    animation-delay: 2s;
+   animation-play-state: paused;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in-out;
 }
@@ -560,7 +561,7 @@ to { transform: translateX(100%); } /* Mueve la compuerta derecha fuera de la pa
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    animation: fadeOutLogo 1.7s 1.9s forwards;
+
     cursor: pointer;
 }
 
@@ -570,4 +571,12 @@ to { transform: translateX(100%); } /* Mueve la compuerta derecha fuera de la pa
     margin-top: 10px;
     font-weight:bold;
 
+}
+#Texto-R:hover{
+    color: red;
+
+}
+.logo-oculto{
+    animation: fadeOutLogo 0.5s forwards;
+    animation-timing-function: ease-in-out;
 }

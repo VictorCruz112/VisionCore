@@ -1,12 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- LÓGICA DE LA PANTALLA DE BIENVENIDA (SIN CAMBIOS) ---
+    // --- LÓGICA DE LA PANTALLA DE BIENVENIDA (MODIFICADA) ---
     const splashScreen = document.getElementById('Pantalla-rapida');
     const welcomeSound = document.getElementById('Sonido-bienvenida');
     const logoYTexto = document.getElementById('Logo-y-texto'); // Contenedor clickeable
     const puertaIzquierda = document.getElementById('Izquierda');
     const puertaDerecha = document.getElementById('Derecha');
 
+    // Esta función ya no es necesaria para la secuencia principal, 
+    // pero la mantenemos por si se usa en otro lado.
     const reanudarAnimaciones = () => {
         if (logoYTexto) logoYTexto.style.animationPlayState = 'running';
         if (puertaIzquierda) puertaIzquierda.style.animationPlayState = 'running';
@@ -14,27 +16,43 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (splashScreen && logoYTexto && puertaIzquierda && puertaDerecha) {
+        
         logoYTexto.addEventListener('click', (event) => {
             event.preventDefault();
             
+            // 1. Reproduce el sonido (si existe)
             if (welcomeSound) {
                 welcomeSound.play().catch(error => {
                     console.warn("La reproducción de audio fue bloqueada o falló:", error);
                 });
             }
             
-            reanudarAnimaciones();
+            // 2. Deshabilita más clics
+            logoYTexto.style.pointerEvents = 'none';
 
+            // 3. Añade la clase para que el logo desaparezca (animación de 0.5s)
+            //    (Esta clase .logo-oculto debe estar en Diseño.css)
+            logoYTexto.classList.add('logo-oculto');
+            
+            // 4. Espera a que termine la animación del logo (500ms = 0.5s)
+            setTimeout(() => {
+                // 5. Inicia la animación de las puertas
+                if (puertaIzquierda) puertaIzquierda.style.animationPlayState = 'running';
+                if (puertaDerecha) puertaDerecha.style.animationPlayState = 'running';
+            }, 500); // <-- Coincide con la duración de 'logo-oculto'
+
+            // 6. Oculta la pantalla splash DESPUÉS de que todo termine
+            //    Tiempo total = 500ms (logo) + 1700ms (puertas) = 2200ms
             setTimeout(() => {
                 splashScreen.classList.add('splash-hidden');
-            }, 3800); 
+            }, 2200); // 500ms (fundido logo) + 1700ms (apertura puertas)
 
-            logoYTexto.style.pointerEvents = 'none';
         }, { once: true });
     }
     // ------------------------------------------------------------------
 
-    // --- LÓGICA DEL FORMULARIO DE CONTACTO (NUEVA IMPLEMENTACIÓN) ---
+
+    // --- LÓGICA DEL FORMULARIO DE CONTACTO (SIN CAMBIOS) ---
     const formulario = document.querySelector('.formulario');
     
     if (formulario) {
@@ -239,3 +257,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
