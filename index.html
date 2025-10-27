@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="aiMjd8DOAtt4lA3yWC88bvJ4Dr2G3Ey8-wcvClpxP3o" /> <!--Verificacion de Google, para usar Google search-->
+    <title>Gripbot-Vision Core</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"><!--Iconos como los que aparacen en el carrusel-->
+    <link rel="stylesheet" href="Diseño.css">
+</head>
+<body>
+    <!--Animacion de bienvenida-->
+    <div id="Pantalla-rapida">
+        <div class="Puertas" id="Izquierda"></div>
+
+        <div id="Logo-y-texto">  
+        <img src="Vision core.jpg" alt="Logo de vision Core" id="logo-bienvenida">
+        <h2 id="Bienvenida-texto">Vision Core</h2>
+        </div>
+        <div class="Puertas" id="Derecha" ></div>
+        <audio id="Sonido-bienvenida" src="Bienvenido a Vision Core.mp3" type="audio/mp3" preload="auto" ></audio>
+    </div>
+
+
+
+
+    <header class="encabezado">
+        <div class="barra-superior">
+            <div class="contenedor">
+                <div class="contacto-info">
+                    <a href="mailto:visioncore2025@gmail.com" class="enlace-contacto"><span>VisionCore2025@gmail.com</span></a>
+                    <a href="tel:68840020" class="enlace-contacto"><span>6884-0020</span></a>
+                </div>
+            </div>
+        </div>
+        <nav class="contenedor contenedor-navegacion">
+            <a data-target="home" class="Logo">
+                <img src="Vision core.jpg" id="Img-port" >
+                <span class="logo" id="Texto-R" >Vision Core</span>
+            </a>
+            <div class="escritorio-menu"> 
+                <a data-target="home">HOME</a>
+                <a data-target="Pag1">ROBOTICA</a>
+                <a data-target="Pag2">PROYECTO</a>
+                <a data-target="Pag3">QUE NOS INSPIRO</a>
+                <a data-target="Pag4">CONOCE MAS</a>
+                <a data-target="Contactos">CONTACTANOS</a>
+            </div>
+            <div class="Version-movil">
+                <button id="menu-boton" aria-label="abrir menu"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+        <div id="menu-movil" class="menu-oculto">
+            <a data-target="home">HOME</a>
+            <a data-target="Pag1">ROBOTICA</a>
+            <a data-target="Pag2">PROYECTO</a>
+            <a data-target="Pag3">INSPIRACION</a>
+            <a data-target="Pag4">CONOCE MAS</a>
+            <a data-target="Contactos">CONTACTANOS</a>
+        </div>
+    </header>
+
+    <main class="contenedor">
+        <section id="home" class="seccion-contenido">
+            <div class="bienvenida-header">
+                <h1>BIENVENIDOS</h1>
+                <p>Somos Vision Core, un equipo de estudiantes explorando el futuro de la construcción con nuestro robot, Gripbot. Desplázate para descubrir nuestro proyecto, la tecnología detrás de él y la inspiración que nos impulsa.</p>
+            </div>
+            <div class="previews-container">
+                <div class="preview-section">
+                    <div class="preview-image"><img src="Robot img.jpg" alt="Ilustración sobre robótica"></div>
+                    <div class="preview-text">
+                        <h2>¿Qué es la Robótica?</h2>
+                        <p>La robótica es una disciplina que se ocupa del diseño, operación, manufacturación, estudio y aplicación de autómatas o robots. Para ello, combina la ingeniería mecánica, ingeniería eléctrica, ingeniería electrónica, ingeniería biomédica y las ciencias de la computación, así como otras disciplinas.</p>
+                        <a data-target="Pag1" class="button-enlace-preview">Leer más</a>
+                    </div>
+                </div>
+                <div class="preview-section reverse">
+                    <div class="preview-image"><img src="Foto de arriba del robot.jpg" alt="Robot Gripbot"></div>
+                    <div class="preview-text">
+                        <h2>Nuestro Proyecto: Gripbot</h2>
+                        <p>Conoce en detalle el diseño, la mecánica y el software de Gripbot, la herramienta pensada para aumentar la seguridad y eficiencia.</p>
+                        <a data-target="Pag2" class="button-enlace-preview">Descubrir el Proyecto</a>
+                    </div>
+                </div>
+                <div class="preview-section">
+                    <div class="preview-image"><img src="Confia en el proceso.png" alt="Equipo trabajando"></div>
+                    <div class="preview-text">
+                        <h2>Nuestra Inspiración</h2>
+                        <p>Todo gran proyecto nace de una idea. Aquí te contamos qué nos motivó, los desafíos que enfrentamos y la visión que tenemos para el futuro.</p>
+                        <a data-target="Pag3" class="button-enlace-preview">Conocer la Historia</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="Pag1" class="seccion-contenido oculto">
+            <div>
+                <h2>¿QUE ES LA ROBOTICA?</h2>
+                <p>La robotica es el campo donde la ingenieria,la informatica y la creatividad se unen para dar vida a maquinas capaces de realizar tareas de forma autonoma.Va mas alla de simples mecanismos;se trata de crear soluciones inteligentes que pueden mover,
+                   manipular y procesar informacion para resolver problemas del mundo real, tal como lo hace nuestro robot, Gripbot.</p>
+            </div>
+            <img src="Robotica.avif" alt="Proyecto" class="Img1">
+        </section>
+
+        <section id="Pag2" class="seccion-contenido oculto">
+            <div>
+                <h2>NUESTRO PROYECTO: GRIPBOT</h2>
+                <p>Gripbot es una garra robotica de alta precision,diseñada para mejorar la seguridad y eficiencia en entornos de construccion.Su objetivo es simple pero crucial: manipular y transportar materiales pesados o de dificil acceso, reduciendo el riesgo para los trabajadores y optimizando los tiempos.
+                    Con un diseño robusto y un control intuitivo,Gripbot es nuestra primera respuesta a los desafios del mañana.
+                </p>
+            </div>
+            <div class="carrusel-contenedor">
+                <div class="carrusel-track">
+                    <div class="carrusel-slide">
+                        <img src="Foto de arriba del robot.jpg" alt="Proyecto Gripbot" class="Img1">
+                    </div>
+                    <div class="carrusel-slide">
+                        <video src="Video del funcionamiento del robot.mp4" type="mp4" class="Video-robot" controls muted loop autoplay>
+                            Tu navegador no soporta el elemento de video.
+                        </video>
+                    </div>
+                </div>
+                <button class="carrusel-boton prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="carrusel-boton next"><i class="fas fa-chevron-right"></i></button>
+                <div class="carrusel-nav">
+                    <button class="carrusel-dot dot-activo"></button>
+                    <button class="carrusel-dot"></button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="Pag3" class="seccion-contenido oculto">
+            <div>
+                <h2>¿POR QUE GRIPBOT?</h2>
+                <p>La idea surgio al observar los desafios diarios en la construccion:
+                    tareas repetitivas, riesgos fisicos y la necesidad constante de mayor eficiencia.
+                    Nos hicimos una pregunta clave:<b>¿como puede la tecnologia ayudar al ser humano?</b>La respuesta
+                    Gripbot, un proyecto nacido de la curiosidad, el trabajo en equipo y el deseo de aplicar nuestros conocimientos
+                    para generar un impacto posivio y tangible.
+                </p>
+            </div>
+            <img src="Segunda foto del armado.jpg" alt="Proyecto" class="Img1">
+        </section>
+
+        <section id="Pag4" class="seccion-contenido oculto">
+            <div class="seccion-centrada" style="margin-bottom: 3rem;">
+                <h2>CONOCE A NUESTRO EQUIPO</h2>
+                <p style="font-size: 1.1rem; max-width: 600px; margin: 1rem auto 0;">
+                 El espiritu de un equipo comienza con personas inspiradoras.Somos un grupo de jovenes comprometidos a cambiar y mejorar el futuro de toda una generacion,
+                 comenzando con las ideas que dasarrollamos hoy.Estas son las mentes detras de Vision Core.
+                </p>
+            </div>
+            <div class="equipo-contenedor" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; text-align: center;">
+                <div class="miembro-equipo" style="flex: 1 1 200px; max-width: 220px;">
+                    <img src="Victor Cruz.png"alt="Foto del primer miembro" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem; box-shadow: var(--sombra-suave);">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.25rem;">Victor Cruz</h3>
+                    <p style="color: #6c757d;">Lider de equipo</p>
+                    <p style="color: #6c757d;">Programador front-end</p>
+                </div>
+                 <div class="miembro-equipo" style="flex: 1 1 200px; max-width: 220px;">
+                    <img src="Owen Martinez.png" alt="Foto del segundo miembro" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem; box-shadow: var(--sombra-suave);">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.25rem;">Owen Martinez</h3>
+                    <p style="color: #6c757d;">Programador Back-end</p>
+                    <p style="color:#6c757d">Programador del robot</p>
+                </div>
+                <div class="miembro-equipo" style="flex: 1 1 200px; max-width: 220px;">
+                    <img src="Carlos Daniel 6.png" alt="Foto del tercer miembro" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem; box-shadow: var(--sombra-suave);">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.25rem;">Carlos Alvarenga</h3>
+                    <p style="color: #6c757d;">Editor de contenido</p>
+                    <p style="color:#6c757d">Diseñador Grafico</p>
+                </div>
+            
+            </div>
+        </section>
+
+        <section id="Contactos" class="seccion-contenido oculto">
+             <div class="seccion-centrada">
+                <h2>CONTACTANOS</h2>
+                <p>Envianos un mensaje o tu opinion de nuestra pagina web.</p>
+            </div>
+            <form class="formulario" action="https://formspree.io/f/mrbylnov" method="post">
+                <div class="form-grupo-doble">
+                    <div>
+                        <label for="nombre">Nombre</label>
+                        <input type="text" placeholder="Ingrese su nombre" id="nombre" name="nombre" required>
+                    </div>
+                    <div>
+                        <label for="email">Correo electronico</label>
+                        <input type="email" placeholder="Ingrese su correo" id="Correo" name="email" required>
+                    </div>
+                </div>
+                <div class="form-grupo">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" rows="4" name="mensaje" required></textarea>
+                </div>
+                <div class="form-accion">
+                    <button type="submit" class="boton-grande">Enviar mensaje</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="Pie-pagina">
+        &copy;2025 Vision Core.Todos los derechos reservados.
+    </footer>
+    
+    <script src="Funcionamiento.js"></script>
+</body>
+</html>
