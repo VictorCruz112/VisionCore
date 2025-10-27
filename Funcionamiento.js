@@ -116,10 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ------------------------------------------------------------------
 
 
-    // --- VARIABLES GENERALES Y LÓGICA DE NAVEGACIÓN (SIN CAMBIOS) ---
+    // --- VARIABLES GENERALES Y LÓGICA DE NAVEGACIÓN--
     const todosLosEnlaces = document.querySelectorAll('.escritorio-menu a, .Logo, .button-enlace-preview, #menu-movil a');
     const todasLasSecciones = document.querySelectorAll('.seccion-contenido');
     const botonMenuMovil = document.getElementById('menu-boton');
@@ -166,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- LÓGICA DEL CARRUSEL (SIN CAMBIOS) ---
+    // --- LÓGICA DEL CARRUSEL () ---
     function setupCarousel() {
         const carruselTrack = document.querySelector('#Pag2 .carrusel-track');
         // Prevenir errores si el carrusel ya se configuró o no existe
